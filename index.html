@@ -15,10 +15,21 @@
                         secondary: '#3b82f6',
                         accent: '#60a5fa',
                         dark: '#0f172a',
+                        skyblue: '#87CEEB',
+                        vermilion: '#E63946',
+                        leafgreen: '#4D7C0F',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
+                        kai: ['KaiTi', 'STKaiti', 'sans-serif'],
+                        song: ['SimSun', 'STSong', 'sans-serif'],
+                        fs: ['FangSong', 'STFangsong', 'sans-serif'],
+                        franklin: ['"Franklin Gothic Book"', 'sans-serif'],
                     },
+                    backgroundImage: {
+                        // 替换为新的背景图
+                        'custom-bg': "url('http://daixiawunian.ct.ws/wp-content/uploads/2025/07/VCG211489098074-1.jpg')",
+                    }
                 }
             }
         }
@@ -45,7 +56,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen overflow-x-hidden">
+<body class="min-h-screen overflow-x-hidden bg-custom-bg bg-fixed bg-cover bg-center">
     <!-- 导航指示器 -->
     <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 hidden md:flex flex-col items-center space-y-4">
         <button class="w-3 h-3 rounded-full bg-primary transition-all duration-300 scale-150" data-section="section1"></button>
@@ -55,7 +66,7 @@
     <!-- 页面内容 -->
     <div id="page-container" class="w-full">
         <!-- 第一页 -->
-        <section id="section1" class="min-h-screen flex flex-col items-center justify-center relative bg-gray-50">
+        <section id="section1" class="min-h-screen flex flex-col items-center justify-center relative bg-gray-50 bg-opacity-80">
             <!-- 容晨轨道交通标志和名称 -->
             <div class="flex items-center mb-12">
                 <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-primary shadow-lg">
@@ -64,14 +75,14 @@
                          class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <h1 class="text-5xl font-bold text-dark">容晨轨道交通</h1>
-                    <p class="text-xl text-gray-600">Rongchen Metro</p>
+                    <h1 class="text-5xl font-bold text-dark font-song">容晨轨道交通</h1>
+                    <p class="text-xl text-gray-600 font-franklin">Rongchen Metro</p>
                 </div>
             </div>
             
             <!-- 欢迎信息 -->
             <div class="mt-10 text-center max-w-2xl px-6">
-                <h2 class="text-4xl font-bold text-primary mb-4">欢迎访问容晨轨道交通官网！</h2>
+                <h2 class="text-4xl font-bold text-vermilion mb-4 font-song">欢迎访问容晨轨道交通官网！</h2>
                 <div class="w-64 h-1 bg-accent mx-auto mt-6 mb-10"></div>
             </div>
             
@@ -85,32 +96,45 @@
         </section>
 
         <!-- 第二页 -->
-        <section id="section2" class="min-h-screen flex flex-col items-center justify-center py-20 relative bg-gray-100">
-            <!-- 禁止吸烟图标 -->
-            <div class="mb-12">
-                <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center">
-                    <i class="fa fa-ban text-white text-5xl"></i>
-                </div>
-                <p class="text-center mt-4 text-xl font-medium text-red-600">禁止吸烟</p>
-            </div>
-            
+        <section id="section2" class="min-h-screen flex flex-col items-center justify-center py-20 relative bg-gray-100 bg-opacity-80">
             <!-- 信息内容 -->
             <div class="max-w-2xl mx-auto px-6 bg-white bg-opacity-80 bg-blur p-8 rounded-lg shadow-lg">
-                <ul class="space-y-4 text-lg">
+                <ul class="space-y-4 text-lg font-fs text-leafgreen">
                     <li>• 容晨轨道交通为容晨市（虚拟）的第一个公共交通出行方式，属于容晨交通旗下部门。</li>
                     <li>• 容晨轨道交通管理着容晨市（虚拟）的高铁、火车、城际列车、空轨、有轨电车、地铁、轻轨、市域快轨、磁悬浮列车、单轨式列车等。</li>
                     <li>• 容晨轨道交通目前地铁和轻轨（都算成地铁）共有有8条线路，分别是1号线、2号线、3号线、4号线、5号线、6号线、7号线、8号线。</li>
-                    <li>• 容晨轨道交通更多资讯可在<a href="https://daixiawunian.ct.ws" class="text-primary underline hover:text-secondary" target="_blank">https://daixiawunian.ct.ws</a>中查看。</li>
+                    <li>• 容晨轨道交通更多资讯可在呆下午年的博客中查看。</li>
                     <li>• 容晨市（虚拟）为呆下午年在Minecraft中创建并改造，使用了Minecraft Transit Railway等多种Mod。</li>
-                    <li>• <a href="https://minecrafttransitrailway.com/" class="text-primary underline hover:text-secondary" target="_blank">Minecraft Transit Railway Mod 官网</a></li>
-                    <li>• <a href="https://www.minecraft.net/zh-hans" class="text-primary underline hover:text-secondary" target="_blank">Minecraft 官网</a></li>
-                    <li>• <a href="https://daixiawunian.mysxl.cn" class="text-primary underline hover:text-secondary" target="_blank">呆下午年的个人网站</a></li>
-                    <li>• <a href="https://daixiawunian.ct.ws" class="text-primary underline hover:text-secondary" target="_blank">呆下午年的博客</a></li>
                 </ul>
+                
+                <!-- 按钮组 -->
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+                            onclick="window.open('https://minecrafttransitrailway.com/', '_blank')">
+                        Minecraft Transit Railway Mod 官网
+                    </button>
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+                            onclick="window.open('https://www.minecraft.net/zh-hans', '_blank')">
+                        Minecraft 官网
+                    </button>
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+                            onclick="window.open('https://daixiawunian.mysxl.cn', '_blank')">
+                        呆下午年的个人网站
+                    </button>
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+                            onclick="window.open('https://daixiawunian.ct.ws', '_blank')">
+                        呆下午年的博客
+                    </button>
+                </div>
             </div>
             
-            <!-- 向上滚动提示 -->
-            <div class="absolute bottom-10 text-center scroll-indicator">
+            <!-- 新增乘客信息 -->
+            <div class="mt-12 text-center max-w-2xl px-6">
+                <p class="text-xl font-bold text-vermilion font-kai">乘客可免费乘坐容晨轨道交通中的地铁、轻轨</p>
+            </div>
+            
+            <!-- 向上滚动提示 - 位置调整为距离底部0px -->
+            <div class="absolute bottom-0 text-center scroll-indicator">
                 <a href="#section1" class="text-gray-500 flex flex-col items-center">
                     <span class="mb-2">向上滚动返回顶部</span>
                     <i class="fa fa-angle-up text-2xl"></i>
