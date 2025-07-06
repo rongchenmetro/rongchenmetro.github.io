@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>容晨轨道交通 - 官网</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#3b82f6',
+                        accent: '#60a5fa',
+                        dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .slide-transition {
+                transition: transform 0.5s ease-in-out;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen overflow-x-hidden">
+    <!-- 幻灯片容器 -->
+    <div id="slider" class="relative w-full h-screen overflow-hidden">
+        <!-- 第一页幻灯片 -->
+        <div class="slide absolute inset-0 flex flex-col items-center justify-center">
+            <!-- 容晨轨道交通标志和名称 -->
+            <div class="flex items-center mb-12">
+                <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mr-6">
+                    <i class="fa fa-subway text-white text-4xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-5xl font-bold text-dark">容晨轨道交通</h1>
+                    <p class="text-xl text-gray-600">Rongchen Metro</p>
+                </div>
+            </div>
+            
+            <!-- 欢迎信息 -->
+            <div class="mt-10">
+                <h2 class="text-4xl font-bold text-center text-primary mb-4">欢迎访问容晨轨道交通官网！</h2>
+                <div class="w-64 h-1 bg-accent mx-auto mt-6"></div>
+            </div>
+            
+            <!-- 幻灯片指示 -->
+            <div class="absolute bottom-10 flex space-x-3">
+                <button class="slide-dot w-3 h-3 rounded-full bg-primary" data-index="0"></button>
+                <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-index="1"></button>
+            </div>
+            
+            <!-- 切换提示 -->
+            <div class="absolute bottom-20 text-gray-500">
+                <p>点击圆点或滑动查看更多 <i class="fa fa-angle-down ml-2"></i></p>
+            </div>
+        </div>
+        
+        <!-- 第二页幻灯片 -->
+        <div class="slide absolute inset-0 flex flex-col items-center justify-center translate-x-full">
+            <!-- 禁止吸烟图标 -->
+            <div class="mb-12">
+                <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center">
+                    <i class="fa fa-ban text-white text-5xl"></i>
+                </div>
+                <p class="text-center mt-4 text-xl font-medium text-red-600">禁止吸烟</p>
+            </div>
+            
+            <!-- 信息内容 -->
+            <div class="max-w-2xl mx-auto px-6 bg-white bg-opacity-80 bg-blur p-8 rounded-lg shadow-lg">
+                <ul class="space-y-4 text-lg">
+                    <li>• 容晨轨道交通为容晨市（虚拟）的第一个公共交通出行方式，属于容晨交通旗下部门。</li>
+                    <li>• 容晨轨道交通管理着容晨市（虚拟）的高铁、火车、城际列车、空轨、有轨电车、地铁、轻轨、市域快轨、磁悬浮列车、单轨式列车等。</li>
+                    <li>• 容晨轨道交通目前地铁和轻轨（都算成地铁）共有有8条线路，分别是1号线、2号线、3号线、4号线、5号线、6号线、7号线、8号线。</li>
+                    <li>• 容晨轨道交通更多资讯可在<a href="https://daixiawunian.ct.ws" class="text-primary underline hover:text-secondary" target="_blank">https://daixiawunian.ct.ws</a>中查看。</li>
+                    <li>• 容晨市（虚拟）为呆下午年在Minecraft和迷你世界中创建并改造，使用了Minecraft Transit Railway等Mod。</li>
+                    <li>• <a href="https://minecrafttransitrailway.com/" class="text-primary underline hover:text-secondary" target="_blank">Minecraft Transit Railway Mod 官网</a></li>
+                    <li>• <a href="https://www.minecraft.net/zh-hans" class="text-primary underline hover:text-secondary" target="_blank">Minecraft 官网</a></li>
+                    <li>• <a href="https://daixiawunian.mysxl.cn" class="text-primary underline hover:text-secondary" target="_blank">呆下午年的个人网站</a></li>
+                    <li>• <a href="https://daixiawunian.ct.ws" class="text-primary underline hover:text-secondary" target="_blank">呆下午年的博客</a></li>
+                </ul>
+            </div>
+            
+            <!-- 幻灯片指示 -->
+            <div class="absolute bottom-10 flex space-x-3">
+                <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-index="0"></button>
+                <button class="slide-dot w-3 h-3 rounded-full bg-primary" data-index="1"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 幻灯片功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slide-dot');
+            let currentIndex = 0;
+            
+            // 切换幻灯片
+            function goToSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.transform = `translateX(${100 * (i - index)}%)`;
+                });
+                
+                // 更新圆点状态
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.remove('bg-gray-300');
+                        dot.classList.add('bg-primary');
+                    } else {
+                        dot.classList.remove('bg-primary');
+                        dot.classList.add('bg-gray-300');
+                    }
+                });
+                
+                currentIndex = index;
+            }
+            
+            // 点击圆点切换
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    goToSlide(parseInt(dot.dataset.index));
+                });
+            });
+            
+            // 滑动切换
+            let startX = 0;
+            let endX = 0;
+            
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, false);
+            
+            slider.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (startX - endX > 50) {
+                    // 向左滑动，下一张
+                    const nextIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+                    goToSlide(nextIndex);
+                }
+                
+                if (endX - startX > 50) {
+                    // 向右滑动，上一张
+                    const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+                    goToSlide(prevIndex);
+                }
+            }
+            
+            // 键盘导航
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    const nextIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+                    goToSlide(nextIndex);
+                } else if (e.key === 'ArrowLeft') {
+                    const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+                    goToSlide(prevIndex);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
