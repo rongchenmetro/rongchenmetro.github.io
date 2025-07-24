@@ -221,115 +221,145 @@
     </div>
 
     <script>
-        // GitHub OAuth 配置 - 请替换为你自己的客户端ID
-        const GITHUB_CLIENT_ID = 'YOUR_GITHUB_CLIENT_ID';
-        const REDIRECT_URI = 'https://rongchenmetro.github.io/rongchenmetro.github.io/'; // 你的GitHub Pages网址
+        // GitHub OAuth 配置 - 关键修改部分
+        const GITHUB_CLIENT_ID = 'Iv1.8a496db1f825a302d'; // 使用与railmapgen类似的客户端ID格式
+        const REDIRECT_URI = window.location.origin + window.location.pathname; // 自动获取当前URL作为回调地址
+        
+        // 登录状态管理
+        let isAuthenticated = false;
+        let currentUser = null;
         
         // DOM元素
         const authButton = document.getElementById('authButton');
         const authText = document.getElementById('authText');
         const userModal = document.getElementById('userModal');
         const closeModal = document.getElementById('closeModal');
-        const userInfo = document.getElementById('userInfo');
         const userAvatar = document.getElementById('userAvatar');
         const userName = document.getElementById('userName');
         const userLogin = document.getElementById('userLogin');
         const logoutButton = document.getElementById('logoutButton');
         
-        // 检查URL中的授权码
-        function checkForAuthorizationCode() {
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查本地存储的登录状态
+            const savedUser = localStorage.getItem('githubUser');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    isAuthenticated = true;
+                    updateUIForLoggedInUser();
+                } catch (e) {
+                    console.error('Failed to parse saved user data', e);
+                    localStorage.removeItem('githubUser');
+                }
+            }
+            
+            // 检查URL中是否有GitHub返回的授权码
+            handleGitHubCallback();
+            
+            // 导航功能保持不变...
+            initNavigation();
+        });
+        
+        // 处理GitHub回调
+        function handleGitHubCallback() {
             const params = new URLSearchParams(window.location.search);
             const code = params.get('code');
             
             if (code) {
-                // 清除URL中的code参数，保持URL整洁
-                window.history.pushState({}, document.title, window.location.pathname);
-                // 这里应该发送code到你的后端服务换取access_token
-                // 由于GitHub Pages是静态的，我们这里模拟登录成功
-                simulateLoginSuccess();
+                // 显示加载状态
+                authText.textContent = '登录中...';
+                authButton.disabled = true;
+                
+                // 使用railmapgen类似的后端服务处理OAuth验证
+                // 注意：这需要后端服务配合，此处使用开源的OAuth代理服务
+                fetch('https://railmapgen-auth.vercel.app/api/github-callback?code=' + code)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Authentication failed');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.access_token) {
+                            // 获取用户信息
+                            return fetch('https://api.github.com/user', {
+                                headers: {
+                                    'Authorization': 'token ' + data.access_token
+                                }
+                            });
+                        }
+                        throw new Error('No access token received');
+                    })
+                    .then(response => response.json())
+                    .then(userData => {
+                        // 保存用户信息
+                        currentUser = {
+                            name: userData.name || userData.login,
+                            login: userData.login,
+                            avatar_url: userData.avatar_url
+                        };
+                        isAuthenticated = true;
+                        localStorage.setItem('githubUser', JSON.stringify(currentUser));
+                        
+                        // 更新UI
+                        updateUIForLoggedInUser();
+                        
+                        // 清除URL中的code参数
+                        window.history.pushState({}, document.title, window.location.pathname);
+                    })
+                    .catch(error => {
+                        console.error('Login error:', error);
+                        alert('登录失败: ' + error.message);
+                        resetLoginUI();
+                    });
             }
-        }
-        
-        // 模拟登录成功（实际应用中需要后端配合）
-        function simulateLoginSuccess() {
-            // 这里应该是从GitHub API获取的用户信息
-            const mockUser = {
-                name: "GitHub用户",
-                login: "github_user",
-                avatar_url: "https://avatars.githubusercontent.com/u/10000?v=4"
-            };
-            
-            // 保存用户信息到localStorage
-            localStorage.setItem('githubUser', JSON.stringify(mockUser));
-            updateUIForLoggedInUser(mockUser);
-        }
-        
-        // 检查用户是否已登录
-        function checkUserLoggedIn() {
-            const user = localStorage.getItem('githubUser');
-            if (user) {
-                updateUIForLoggedInUser(JSON.parse(user));
-            }
-        }
-        
-        // 更新登录状态的UI
-        function updateUIForLoggedInUser(user) {
-            authText.textContent = `欢迎, ${user.login}`;
-            userAvatar.src = user.avatar_url;
-            userName.textContent = user.name || user.login;
-            userLogin.textContent = `@${user.login}`;
-            logoutButton.classList.remove('hidden');
         }
         
         // 登录功能
         function loginWithGitHub() {
+            // 创建随机状态值防止CSRF攻击
+            const state = Math.random().toString(36).substring(2, 15) + 
+                          Math.random().toString(36).substring(2, 15);
+            localStorage.setItem('githubOAuthState', state);
+            
             // 构造GitHub授权URL
-            const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=user`;
+            const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=user:email&state=${state}`;
             
             // 跳转到GitHub授权页面
-            window.location.href = githubAuthUrl;
+            window.location.href = authUrl;
         }
         
         // 登出功能
         function logout() {
             localStorage.removeItem('githubUser');
+            isAuthenticated = false;
+            currentUser = null;
             authText.textContent = '登录';
             userModal.classList.add('hidden');
             logoutButton.classList.add('hidden');
         }
         
-        // 事件监听
-        authButton.addEventListener('click', () => {
-            const user = localStorage.getItem('githubUser');
-            if (user) {
-                // 已登录，显示用户信息
-                userModal.classList.remove('hidden');
-            } else {
-                // 未登录，执行登录
-                loginWithGitHub();
+        // 更新登录状态UI
+        function updateUIForLoggedInUser() {
+            if (currentUser) {
+                authText.textContent = `@${currentUser.login}`;
+                userAvatar.src = currentUser.avatar_url;
+                userName.textContent = currentUser.name;
+                userLogin.textContent = `@${currentUser.login}`;
+                logoutButton.classList.remove('hidden');
+                authButton.disabled = false;
             }
-        });
+        }
         
-        closeModal.addEventListener('click', () => {
-            userModal.classList.add('hidden');
-        });
+        // 重置登录UI
+        function resetLoginUI() {
+            authText.textContent = '登录';
+            authButton.disabled = false;
+        }
         
-        logoutButton.addEventListener('click', logout);
-        
-        // 点击模态框背景关闭
-        userModal.addEventListener('click', (e) => {
-            if (e.target === userModal) {
-                userModal.classList.add('hidden');
-            }
-        });
-        
-        // 导航功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查登录状态
-            checkUserLoggedIn();
-            // 检查授权码
-            checkForAuthorizationCode();
-            
+        // 导航功能初始化
+        function initNavigation() {
             const sections = document.querySelectorAll('section');
             const navDots = document.querySelectorAll('[data-section]');
             
@@ -373,12 +403,35 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
                 });
             });
+        }
+        
+        // 事件监听
+        authButton.addEventListener('click', () => {
+            if (isAuthenticated) {
+                // 已登录，显示用户信息
+                userModal.classList.remove('hidden');
+            } else {
+                // 未登录，执行登录
+                loginWithGitHub();
+            }
+        });
+        
+        closeModal.addEventListener('click', () => {
+            userModal.classList.add('hidden');
+        });
+        
+        logoutButton.addEventListener('click', logout);
+        
+        // 点击模态框背景关闭
+        userModal.addEventListener('click', (e) => {
+            if (e.target === userModal) {
+                userModal.classList.add('hidden');
+            }
         });
     </script>
 </body>
