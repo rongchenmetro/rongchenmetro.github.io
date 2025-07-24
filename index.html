@@ -6,6 +6,20 @@
     <title>容晨轨道交通官网</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- GitHub Pages字体引用方式 -->
+    <style>
+        @font-face {
+            font-family: 'HYWenHei-85W';
+            /* 假设字体文件放在项目根目录的fonts文件夹中 */
+            src: url('/fonts/HYWenHei-85W.woff2') format('woff2'),
+                 url('/fonts/HYWenHei-85W.woff') format('woff'),
+                 url('/fonts/HYWenHei-85W.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            /* 允许跨域访问字体 */
+            font-display: swap;
+        }
+    </style>
     <script>
         tailwind.config = {
             theme: {
@@ -25,9 +39,9 @@
                         song: ['SimSun', 'STSong', 'sans-serif'],
                         fs: ['FangSong', 'STFangsong', 'sans-serif'],
                         franklin: ['"Franklin Gothic Book"', 'sans-serif'],
+                        hywenhei: ['HYWenHei-85W', 'sans-serif'],
                     },
                     backgroundImage: {
-                        // 替换为新的背景图
                         'custom-bg': "url('http://daixiawunian.ct.ws/wp-content/uploads/2025/07/VCG211489098074-1.jpg')",
                     }
                 }
@@ -52,6 +66,9 @@
                 0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
                 40% {transform: translateY(-20px);}
                 60% {transform: translateY(-10px);}
+            }
+            .bottom10 {
+                bottom: 10px !important;
             }
         }
     </style>
@@ -97,31 +114,71 @@
 
         <!-- 第二页 -->
         <section id="section2" class="min-h-screen flex flex-col items-center justify-center py-20 relative bg-gray-100 bg-opacity-80">
-            <!-- 信息内容 -->
-            <div class="max-w-2xl mx-auto px-6 bg-white bg-opacity-80 bg-blur p-8 rounded-lg shadow-lg">
-                <ul class="space-y-4 text-lg font-fs text-leafgreen">
-                    <li>• 容晨轨道交通为容晨市（虚拟）的第一个公共交通出行方式，属于容晨交通旗下部门。</li>
-                    <li>• 容晨轨道交通管理着容晨市（虚拟）的高铁、火车、城际列车、空轨、有轨电车、地铁、轻轨、市域快轨、磁悬浮列车、单轨式列车等。</li>
-                    <li>• 容晨轨道交通目前地铁和轻轨（都算成地铁）共有有8条线路，分别是1号线、2号线、3号线、4号线、5号线、6号线、7号线、8号线。</li>
-                    <li>• 容晨轨道交通更多资讯可在呆下午年的博客中查看。</li>
-                    <li>• 容晨市（虚拟）为呆下午年在Minecraft中创建并改造，使用了Minecraft Transit Railway等多种Mod。</li>
-                </ul>
-                
-                <!-- 按钮组 -->
-                <div class="flex flex-wrap justify-center gap-4 mt-8">
-                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+            <!-- 信息内容 - 使用汉仪文黑字体 -->
+            <div class="max-w-2xl mx-auto px-6 bg-white bg-opacity-90 bg-blur p-8 rounded-lg shadow-lg mb-12">
+                <div class="space-y-8 text-lg font-hywenhei text-leafgreen leading-relaxed">
+                    <!-- 第一段 -->
+                    <p class="pl-2 border-l-4 border-primary/30">
+                        容晨轨道交通为容晨市（虚拟）的第一个公共交通出行方式，属于容晨交通旗下部门。作为城市交通网络的核心组成部分，我们致力于为市民提供高效、安全、舒适的出行服务。
+                    </p>
+                    
+                    <!-- 交通体系部分 -->
+                    <div class="space-y-4">
+                        <p class="font-semibold text-primary">容晨轨道交通管理着容晨市（虚拟）的多元化轨道交通体系，涵盖：</p>
+                        <ul class="space-y-3 pl-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-train text-primary mt-1 mr-3"></i>
+                                <span>高铁与城际列车（连接城市内外的快速通道）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-tram text-primary mt-1 mr-3"></i>
+                                <span>空轨、有轨电车（城市低空与地面交通网络）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-subway text-primary mt-1 mr-3"></i>
+                                <span>地铁、轻轨（核心城区骨干交通）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-monorail text-primary mt-1 mr-3"></i>
+                                <span>市域快轨、磁悬浮列车、单轨式列车等特色交通方式</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 地铁线路部分 -->
+                    <p class="pl-2 border-l-4 border-primary/30">
+                        目前，容晨轨道交通的地铁网络（含轻轨）已形成8条线路的完善布局，分别是1号线至8号线，各线路覆盖城市主要功能区、商业中心及居民区，实现了便捷的换乘体系。
+                    </p>
+                    
+                    <!-- 更多资讯部分 -->
+                    <p class="pl-2 border-l-4 border-primary/30">
+                        关于容晨轨道交通的更多资讯，包括线路规划、运营时间、票价信息等，可在呆下午年的博客中查看详细内容。
+                    </p>
+                    
+                    <!-- 虚拟城市部分 -->
+                    <p class="pl-2 border-l-4 border-primary/30">
+                        容晨市（虚拟）为呆下午年在Minecraft中创建并改造的虚拟城市，通过Minecraft Transit Railway等多种Mod实现了逼真的轨道交通系统模拟，还原了现实中地铁网络的运营场景。
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 按钮组单独分区 -->
+            <div class="max-w-2xl w-full mx-auto px-6 bg-white bg-opacity-90 bg-blur p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-primary mb-6 text-center font-song">相关链接</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-2 rounded-md transition-colors duration-300 text-sm" 
                             onclick="window.open('https://minecrafttransitrailway.com/', '_blank')">
                         Minecraft Transit Railway Mod 官网
                     </button>
-                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-2 rounded-md transition-colors duration-300 text-sm" 
                             onclick="window.open('https://www.minecraft.net/zh-hans', '_blank')">
                         Minecraft 官网
                     </button>
-                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-2 rounded-md transition-colors duration-300 text-sm" 
                             onclick="window.open('https://daixiawunian.mysxl.cn', '_blank')">
                         呆下午年的个人网站
                     </button>
-                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-1 rounded-md transition-colors duration-300 text-sm" 
+                    <button class="border-2 border-skyblue text-skyblue hover:border-primary hover:text-primary bg-transparent px-4 py-2 rounded-md transition-colors duration-300 text-sm" 
                             onclick="window.open('https://daixiawunian.ct.ws', '_blank')">
                         呆下午年的博客
                     </button>
@@ -133,8 +190,8 @@
                 <p class="text-xl font-bold text-vermilion font-kai">乘客可免费乘坐容晨轨道交通中的地铁、轻轨</p>
             </div>
             
-            <!-- 向上滚动提示 - 位置调整为距离底部0px -->
-            <div class="absolute bottom-0 text-center scroll-indicator">
+            <!-- 向上滚动提示 -->
+            <div class="absolute bottom10 text-center scroll-indicator">
                 <a href="#section1" class="text-gray-500 flex flex-col items-center">
                     <span class="mb-2">向上滚动返回顶部</span>
                     <i class="fa fa-angle-up text-2xl"></i>
