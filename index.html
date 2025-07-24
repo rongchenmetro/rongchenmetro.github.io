@@ -6,20 +6,7 @@
     <title>容晨轨道交通官网</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- GitHub Pages字体引用方式 -->
-    <style>
-        @font-face {
-            font-family: 'HYWenHei-85W';
-            /* 假设字体文件放在项目根目录的fonts文件夹中 */
-            src: url('/fonts/HYWenHei-85W.woff2') format('woff2'),
-                 url('/fonts/HYWenHei-85W.woff') format('woff'),
-                 url('/fonts/HYWenHei-85W.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            /* 允许跨域访问字体 */
-            font-display: swap;
-        }
-    </style>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -39,7 +26,6 @@
                         song: ['SimSun', 'STSong', 'sans-serif'],
                         fs: ['FangSong', 'STFangsong', 'sans-serif'],
                         franklin: ['"Franklin Gothic Book"', 'sans-serif'],
-                        hywenhei: ['HYWenHei-85W', 'sans-serif'],
                     },
                     backgroundImage: {
                         'custom-bg': "url('http://daixiawunian.ct.ws/wp-content/uploads/2025/07/VCG211489098074-1.jpg')",
@@ -70,10 +56,21 @@
             .bottom10 {
                 bottom: 10px !important;
             }
+            .modal-backdrop {
+                backdrop-filter: blur(5px);
+            }
         }
     </style>
 </head>
 <body class="min-h-screen overflow-x-hidden bg-custom-bg bg-fixed bg-cover bg-center">
+    <!-- 登录按钮 -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="authButton" class="bg-white bg-opacity-90 hover:bg-opacity-100 text-dark font-medium py-2 px-4 rounded-lg shadow-md transition-all duration-300 flex items-center">
+            <i class="fa fa-github mr-2"></i>
+            <span id="authText">登录</span>
+        </button>
+    </div>
+
     <!-- 导航指示器 -->
     <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 hidden md:flex flex-col items-center space-y-4">
         <button class="w-3 h-3 rounded-full bg-primary transition-all duration-300 scale-150" data-section="section1"></button>
@@ -82,7 +79,6 @@
 
     <!-- 页面内容 -->
     <div id="page-container" class="w-full">
-        <!-- 第一页 -->
         <section id="section1" class="min-h-screen flex flex-col items-center justify-center relative bg-gray-50 bg-opacity-80">
             <!-- 容晨轨道交通标志和名称 -->
             <div class="flex items-center mb-12">
@@ -114,9 +110,9 @@
 
         <!-- 第二页 -->
         <section id="section2" class="min-h-screen flex flex-col items-center justify-center py-20 relative bg-gray-100 bg-opacity-80">
-            <!-- 信息内容 - 使用汉仪文黑字体 -->
+            <!-- 信息内容 -->
             <div class="max-w-2xl mx-auto px-6 bg-white bg-opacity-90 bg-blur p-8 rounded-lg shadow-lg mb-12">
-                <div class="space-y-8 text-lg font-hywenhei text-leafgreen leading-relaxed">
+                <div class="space-y-8 text-lg font-fs text-leafgreen leading-relaxed">
                     <!-- 第一段 -->
                     <p class="pl-2 border-l-4 border-primary/30">
                         容晨轨道交通为容晨市（虚拟）的第一个公共交通出行方式，属于容晨交通旗下部门。作为城市交通网络的核心组成部分，我们致力于为市民提供高效、安全、舒适的出行服务。
@@ -200,9 +196,140 @@
         </section>
     </div>
 
+    <!-- 用户信息模态框 -->
+    <div id="userModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 overflow-hidden transform transition-all">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-primary">用户信息</h3>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="userInfo" class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary">
+                        <img id="userAvatar" src="https://via.placeholder.com/100" alt="用户头像" class="w-full h-full object-cover">
+                    </div>
+                    <h4 id="userName" class="text-xl font-bold mb-2">未登录</h4>
+                    <p id="userLogin" class="text-gray-600 mb-4">请登录以获取更多服务</p>
+                    <button id="logoutButton" class="mt-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md transition-colors duration-300 hidden">
+                        <i class="fa fa-sign-out mr-2"></i>退出登录
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // GitHub OAuth 配置 - 请替换为你自己的客户端ID
+        const GITHUB_CLIENT_ID = 'YOUR_GITHUB_CLIENT_ID';
+        const REDIRECT_URI = 'https://rongchenmetro.github.io/rongchenmetro.github.io/'; // 你的GitHub Pages网址
+        
+        // DOM元素
+        const authButton = document.getElementById('authButton');
+        const authText = document.getElementById('authText');
+        const userModal = document.getElementById('userModal');
+        const closeModal = document.getElementById('closeModal');
+        const userInfo = document.getElementById('userInfo');
+        const userAvatar = document.getElementById('userAvatar');
+        const userName = document.getElementById('userName');
+        const userLogin = document.getElementById('userLogin');
+        const logoutButton = document.getElementById('logoutButton');
+        
+        // 检查URL中的授权码
+        function checkForAuthorizationCode() {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            
+            if (code) {
+                // 清除URL中的code参数，保持URL整洁
+                window.history.pushState({}, document.title, window.location.pathname);
+                // 这里应该发送code到你的后端服务换取access_token
+                // 由于GitHub Pages是静态的，我们这里模拟登录成功
+                simulateLoginSuccess();
+            }
+        }
+        
+        // 模拟登录成功（实际应用中需要后端配合）
+        function simulateLoginSuccess() {
+            // 这里应该是从GitHub API获取的用户信息
+            const mockUser = {
+                name: "GitHub用户",
+                login: "github_user",
+                avatar_url: "https://avatars.githubusercontent.com/u/10000?v=4"
+            };
+            
+            // 保存用户信息到localStorage
+            localStorage.setItem('githubUser', JSON.stringify(mockUser));
+            updateUIForLoggedInUser(mockUser);
+        }
+        
+        // 检查用户是否已登录
+        function checkUserLoggedIn() {
+            const user = localStorage.getItem('githubUser');
+            if (user) {
+                updateUIForLoggedInUser(JSON.parse(user));
+            }
+        }
+        
+        // 更新登录状态的UI
+        function updateUIForLoggedInUser(user) {
+            authText.textContent = `欢迎, ${user.login}`;
+            userAvatar.src = user.avatar_url;
+            userName.textContent = user.name || user.login;
+            userLogin.textContent = `@${user.login}`;
+            logoutButton.classList.remove('hidden');
+        }
+        
+        // 登录功能
+        function loginWithGitHub() {
+            // 构造GitHub授权URL
+            const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=user`;
+            
+            // 跳转到GitHub授权页面
+            window.location.href = githubAuthUrl;
+        }
+        
+        // 登出功能
+        function logout() {
+            localStorage.removeItem('githubUser');
+            authText.textContent = '登录';
+            userModal.classList.add('hidden');
+            logoutButton.classList.add('hidden');
+        }
+        
+        // 事件监听
+        authButton.addEventListener('click', () => {
+            const user = localStorage.getItem('githubUser');
+            if (user) {
+                // 已登录，显示用户信息
+                userModal.classList.remove('hidden');
+            } else {
+                // 未登录，执行登录
+                loginWithGitHub();
+            }
+        });
+        
+        closeModal.addEventListener('click', () => {
+            userModal.classList.add('hidden');
+        });
+        
+        logoutButton.addEventListener('click', logout);
+        
+        // 点击模态框背景关闭
+        userModal.addEventListener('click', (e) => {
+            if (e.target === userModal) {
+                userModal.classList.add('hidden');
+            }
+        });
+        
         // 导航功能
         document.addEventListener('DOMContentLoaded', function() {
+            // 检查登录状态
+            checkUserLoggedIn();
+            // 检查授权码
+            checkForAuthorizationCode();
+            
             const sections = document.querySelectorAll('section');
             const navDots = document.querySelectorAll('[data-section]');
             
@@ -214,7 +341,6 @@
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.clientHeight;
                     
-                    // 当滚动到section的1/3高度时，认为进入该section
                     if (window.pageYOffset >= sectionTop - sectionHeight / 3) {
                         currentSection = section.getAttribute('id');
                     }
@@ -257,3 +383,4 @@
     </script>
 </body>
 </html>
+    
