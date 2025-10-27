@@ -124,11 +124,11 @@
                         <ul class="space-y-3 pl-6">
                             <li class="flex items-start">
                                 <i class="fa fa-train text-primary mt-1 mr-3"></i>
-                                <span>高铁与城际列车（连接城市内外的快速通道）</span>
+                                <span>高铁与火车（连接城市内外的快速通道）</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-tram text-primary mt-1 mr-3"></i>
-                                <span>空轨、有轨电车（城市低空与地面交通网络）</span>
+                                <span>有轨电车（城市地面交通网络）</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-subway text-primary mt-1 mr-3"></i>
@@ -136,7 +136,7 @@
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-monorail text-primary mt-1 mr-3"></i>
-                                <span>市域快轨、磁悬浮列车、单轨式列车等特色交通方式</span>
+                                <span>风景区列车等特色交通方式</span>
                             </li>
                         </ul>
                     </div>
@@ -183,7 +183,7 @@
             
             <!-- 新增乘客信息 -->
             <div class="mt-12 text-center max-w-2xl px-6">
-                <p class="text-xl font-bold text-vermilion font-kai">乘客可免费乘坐容晨轨道交通中的地铁、轻轨</p>
+                <p class="text-xl font-bold text-vermilion font-kai">火车、高铁、轻轨和地铁不分开运营</p>
             </div>
             
             <!-- 向上滚动提示 -->
@@ -197,166 +197,6 @@
     </div>
 
     <!-- 用户信息模态框 -->
-    <div id="userModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 overflow-hidden transform transition-all">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-bold text-primary">用户信息</h3>
-                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
-                        <i class="fa fa-times text-xl"></i>
-                    </button>
-                </div>
-                <div id="userInfo" class="flex flex-col items-center">
-                    <div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary">
-                        <img id="userAvatar" src="https://via.placeholder.com/100" alt="用户头像" class="w-full h-full object-cover">
-                    </div>
-                    <h4 id="userName" class="text-xl font-bold mb-2">未登录</h4>
-                    <p id="userLogin" class="text-gray-600 mb-4">请登录以获取更多服务</p>
-                    <button id="logoutButton" class="mt-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md transition-colors duration-300 hidden">
-                        <i class="fa fa-sign-out mr-2"></i>退出登录
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // GitHub OAuth 配置 - 关键修改部分
-        const GITHUB_CLIENT_ID = 'Iv1.8a496db1f825a302d'; // 使用与railmapgen类似的客户端ID格式
-        const REDIRECT_URI = window.location.origin + window.location.pathname; // 自动获取当前URL作为回调地址
-        
-        // 登录状态管理
-        let isAuthenticated = false;
-        let currentUser = null;
-        
-        // DOM元素
-        const authButton = document.getElementById('authButton');
-        const authText = document.getElementById('authText');
-        const userModal = document.getElementById('userModal');
-        const closeModal = document.getElementById('closeModal');
-        const userAvatar = document.getElementById('userAvatar');
-        const userName = document.getElementById('userName');
-        const userLogin = document.getElementById('userLogin');
-        const logoutButton = document.getElementById('logoutButton');
-        
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查本地存储的登录状态
-            const savedUser = localStorage.getItem('githubUser');
-            if (savedUser) {
-                try {
-                    currentUser = JSON.parse(savedUser);
-                    isAuthenticated = true;
-                    updateUIForLoggedInUser();
-                } catch (e) {
-                    console.error('Failed to parse saved user data', e);
-                    localStorage.removeItem('githubUser');
-                }
-            }
-            
-            // 检查URL中是否有GitHub返回的授权码
-            handleGitHubCallback();
-            
-            // 导航功能保持不变...
-            initNavigation();
-        });
-        
-        // 处理GitHub回调
-        function handleGitHubCallback() {
-            const params = new URLSearchParams(window.location.search);
-            const code = params.get('code');
-            
-            if (code) {
-                // 显示加载状态
-                authText.textContent = '登录中...';
-                authButton.disabled = true;
-                
-                // 使用railmapgen类似的后端服务处理OAuth验证
-                // 注意：这需要后端服务配合，此处使用开源的OAuth代理服务
-                fetch('https://railmapgen-auth.vercel.app/api/github-callback?code=' + code)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Authentication failed');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.access_token) {
-                            // 获取用户信息
-                            return fetch('https://api.github.com/user', {
-                                headers: {
-                                    'Authorization': 'token ' + data.access_token
-                                }
-                            });
-                        }
-                        throw new Error('No access token received');
-                    })
-                    .then(response => response.json())
-                    .then(userData => {
-                        // 保存用户信息
-                        currentUser = {
-                            name: userData.name || userData.login,
-                            login: userData.login,
-                            avatar_url: userData.avatar_url
-                        };
-                        isAuthenticated = true;
-                        localStorage.setItem('githubUser', JSON.stringify(currentUser));
-                        
-                        // 更新UI
-                        updateUIForLoggedInUser();
-                        
-                        // 清除URL中的code参数
-                        window.history.pushState({}, document.title, window.location.pathname);
-                    })
-                    .catch(error => {
-                        console.error('Login error:', error);
-                        alert('登录失败: ' + error.message);
-                        resetLoginUI();
-                    });
-            }
-        }
-        
-        // 登录功能
-        function loginWithGitHub() {
-            // 创建随机状态值防止CSRF攻击
-            const state = Math.random().toString(36).substring(2, 15) + 
-                          Math.random().toString(36).substring(2, 15);
-            localStorage.setItem('githubOAuthState', state);
-            
-            // 构造GitHub授权URL
-            const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=user:email&state=${state}`;
-            
-            // 跳转到GitHub授权页面
-            window.location.href = authUrl;
-        }
-        
-        // 登出功能
-        function logout() {
-            localStorage.removeItem('githubUser');
-            isAuthenticated = false;
-            currentUser = null;
-            authText.textContent = '登录';
-            userModal.classList.add('hidden');
-            logoutButton.classList.add('hidden');
-        }
-        
-        // 更新登录状态UI
-        function updateUIForLoggedInUser() {
-            if (currentUser) {
-                authText.textContent = `@${currentUser.login}`;
-                userAvatar.src = currentUser.avatar_url;
-                userName.textContent = currentUser.name;
-                userLogin.textContent = `@${currentUser.login}`;
-                logoutButton.classList.remove('hidden');
-                authButton.disabled = false;
-            }
-        }
-        
-        // 重置登录UI
-        function resetLoginUI() {
-            authText.textContent = '登录';
-            authButton.disabled = false;
-        }
         
         // 导航功能初始化
         function initNavigation() {
