@@ -96,7 +96,7 @@
             <div class="absolute bottom-10 text-center scroll-indicator">
                 <a href="#section2" class="text-gray-500 flex flex-col items-center">
                     <span class="mb-2">向下滚动查看更多</span>
-                    <i class="fa fa-angle-down text-2xl"></i>
+                    <<i class="fa fa-angle-down text-2xl"></</i>
                 </a>
             </div>
         </section>
@@ -116,19 +116,19 @@
                         <p class="font-semibold text-primary">容晨轨道交通管理着容晨市（虚拟）的多元化轨道交通体系，涵盖：</p>
                         <ul class="space-y-3 pl-6">
                             <li class="flex items-start">
-                                <i class="fa fa-train text-primary mt-1 mr-3"></i>
+                                <<i class="fa fa-train text-primary mt-1 mr-3"></</i>
                                 <span>高铁与火车（连接城市内外的快速通道）</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fa fa-tram text-primary mt-1 mr-3"></i>
+                                <<i class="fa fa-tram text-primary mt-1 mr-3"></</i>
                                 <span>有轨电车（城市地面交通网络）</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fa fa-subway text-primary mt-1 mr-3"></i>
+                                <<i class="fa fa-subway text-primary mt-1 mr-3"></</i>
                                 <span>地铁、轻轨（核心城区骨干交通）</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fa fa-monorail text-primary mt-1 mr-3"></i>
+                                <<i class="fa fa-monorail text-primary mt-1 mr-3"></</i>
                                 <span>风景区列车等特色交通方式</span>
                             </li>
                         </ul>
@@ -187,9 +187,58 @@
             <div class="absolute bottom20 text-center scroll-indicator">
                 <a href="#section1" class="text-gray-500 flex flex-col items-center">
                     <span class="mb-2">向上滚动返回顶部</span>
-                    <i class="fa fa-angle-up text-2xl"></i>
+                    <<i class="fa fa-angle-up text-2xl"></</i>
                 </a>
             </div>
         </section>
     </div>
 
+    <script>
+        // 获取所有导航指示器按钮
+        const navButtons = document.querySelectorAll('[data-section]');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 获取目标区块的ID
+                const targetId = button.getAttribute('data-section');
+                // 找到目标区块并滚动到该位置
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth' // 平滑滚动效果
+                });
+                
+                // 按钮样式切换（点击后高亮当前区块）
+                navButtons.forEach(btn => {
+                    btn.classList.remove('scale-150', 'bg-primary');
+                    btn.classList.add('bg-gray-300');
+                });
+                button.classList.remove('bg-gray-300');
+                button.classList.add('scale-150', 'bg-primary');
+            });
+        });
+
+        // 滚动时自动激活对应导航按钮
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navButtons.forEach(button => {
+                button.classList.remove('scale-150', 'bg-primary');
+                button.classList.add('bg-gray-300');
+                if (button.getAttribute('data-section') === currentSection) {
+                    button.classList.remove('bg-gray-300');
+                    button.classList.add('scale-150', 'bg-primary');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
