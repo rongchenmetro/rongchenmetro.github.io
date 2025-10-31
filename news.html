@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>容晨轨道交通 - 最新消息</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        /* 顶部导航栏（与线路图页面一致） */
+        .top-nav {
+            background-color: #1a56db;
+            width: 100%;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .top-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .top-nav a:hover {
+            color: #f0f0f0;
+        }
+        /* 页面标题区域 */
+        .page-header {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .page-title {
+            color: #0f172a;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .update-tip {
+            color: #666;
+            font-size: 14px;
+        }
+        /* 新闻板块容器 */
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+        /* 单个新闻板块样式 */
+        .news-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
+        }
+        .news-item:hover {
+            transform: translateY(-3px);
+        }
+        .news-date {
+            display: inline-block;
+            background-color: #e6f0ff;
+            color: #1a56db;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .news-title {
+            color: #0f172a;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #1a56db;
+            padding-left: 12px;
+        }
+        .news-content {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .news-content p {
+            margin-bottom: 12px;
+        }
+        /* 响应式适配（小屏幕） */
+        @media (max-width: 768px) {
+            .top-nav ul {
+                gap: 20px;
+                padding: 0 10px;
+            }
+            .page-title {
+                font-size: 24px;
+            }
+            .news-item {
+                padding: 20px;
+            }
+            .news-title {
+                font-size: 18px;
+            }
+            .news-content {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏（与其他页面统一） -->
+    <nav class="top-nav">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="map.html">线路图</a></li>
+            <li><a href="news.html">最新消息</a></li>
+        </ul>
+    </nav>
+
+    <!-- 页面标题区域 -->
+    <div class="page-header">
+        <h1 class="page-title">容晨轨道交通最新消息</h1>
+        <p class="update-tip">最新更新时间：2025-11-03</p>
+    </div>
+
+    <!-- 新闻内容容器 -->
+    <div class="news-container">
+        <!-- 新闻1：2025-11-3 1号线开工 -->
+        <div class="news-item">
+            <span class="news-date">2025-11-03</span>
+            <h2 class="news-title">容晨轨道交通1号线开工，串联协和区与御央区核心</h2>
+            <div class="news-content">
+                <p>2025年11月3日，容晨轨道交通1号线在御央区银开枢纽站正式开工。该线路北起御央区“复兴街站”，南至协和区“郑楠北路站”，全长约28.5公里，设站12座，有效覆盖两大区域的核心功能区。</p>
+                <p>1号线串联容阳区人民广场、御央区复兴街等商圈，采用B型地铁列车，设计时速80公里。施工中运用先进盾构技术，确保线路高效推进，预计2029年第四季度开通，将大幅度减缓交通压力。后续将会开通2期复兴路站（不含）-锦书路站</p>
+            </div>
+        </div>
+
+        <!-- 新闻2：2025-4-11 各线路规划完毕 -->
+        <div class="news-item">
+            <span class="news-date">2025-04-11</span>
+            <h2 class="news-title">容晨轨道交通全域线网规划敲定，线路布局紧贴六大行政区蓝色边界</h2>
+            <div class="news-content">
+                <p>2025年4月11日，《容晨市轨道交通线网规划（2025-2040年）》发布，规划的8条地铁线和2条有轨电车线，均沿御央、容阳、协和、融智、容昌、杭晨六大行政区布局，总里程210公里。</p>
+                <p>线网以蓝色边界为依托，地铁线路强化跨区域骨干通勤（如1号线东西向、2号线南北向），有轨电车T1线则沿杭晨、容昌实现微循环接驳，T2线延容昌、容阳、协和运营，同时预留跨界线路接口，助力区域交通一体化。</p>
+            </div>
+        </div>
+
+        <!-- 新闻3：2024-12-14 7条线路获批 -->
+        <div class="news-item">
+            <span class="news-date">2024-12-14</span>
+            <h2 class="news-title">容晨轨道交通4-8号线及T1、T2线获批，沿容昌、杭晨等区域蓝色边界延伸</h2>
+            <div class="news-content">
+                <p>2024年12月14日，轨道交通4号线（御央）、5号线（御央-融智）、6号线（融智-容昌）、7号线（杭晨-协和）、8号线（杭晨-融智）及有轨电车T1、T2线获批，线路沿容昌、杭晨等区域的蓝色边界延伸，总投资约850亿元。</p>
+                <p>这批线路建成后，将沿蓝色区域边界加密容昌、杭晨等新兴区域的轨道交通网络，与1-3号线形成“沿边界覆盖、跨区域联通”的线网格局，进一步完善全域交通体系。</p>
+            </div>
+        </div>
+
+        <!-- 新闻4：2024-02-13 首批3条线路获批 -->
+        <div class="news-item">
+            <span class="news-date">2024-02-13</span>
+            <h2 class="news-title">容晨轨道交通1-3号线获批，沿核心区域蓝色边界构建“十字+放射”线网</h2>
+            <div class="news-content">
+                <p>2024年2月13日，轨道交通1号线（协和-御央）、2号线（御央-融智）、3号线（御央-协和）获批，总长度75公里，沿御央、容阳、协和等核心区域的布局，形成“十字+放射”的核心线网框架。</p>
+                <p>1号线沿东西向蓝色边界串联融智与御央，2号线沿南北向衔接融智与御央，3号线沿东北-西南向联通，三条线路在容阳区人民广场形成三线换乘枢纽。</p>
+            </div>
+        </div>
+
+        <!-- 新闻5：2024-03-08 初步规划启动 -->
+        <div class="news-item">
+            <span class="news-date">2024-03-08</span>
+            <h2 class="news-title">容晨轨道交通线路走向规划启动，沿六大行政区蓝色边界优化布局</h2>
+            <div class="news-content">
+                <p>2024年3月8日，容晨轨道交通线路走向初步规划启动，规划团队重点研究御央、容阳、协和、融智、容昌、杭晨六大行政区，结合客流需求优化线路走向与站点选址。</p>
+                <p>规划过程通过线上线下渠道广泛征求公众意见，确保线路沿城市的布局既契合区域发展规划，又满足市民出行需求，最终形成“沿边界覆盖、跨区域高效联通”的全域轨道交通线网蓝图。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
