@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>容晨轨道交通官网</title>
+    <title>容晨轨道交通 - Rongchen Metro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
@@ -63,7 +63,20 @@
     </style>
 </head>
 <body class="min-h-screen overflow-x-hidden bg-custom-bg bg-fixed bg-cover bg-center">
+<!-- 顶部导航栏代码 -->
+<nav style="position: fixed; top: 0; left: 0; width: 100%; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 12px 0; z-index: 999;">
+  <ul style="list-style: none; margin: 0; padding: 0; text-align: center;">
+    <li style="display: inline-block; margin: 0 20px;">
+      <a href="index.html" style="text-decoration: none; color: #333; font-size: 16px; font-weight: 500;">首页</a>
+    </li>
+    <li style="display: inline-block; margin: 0 20px;">
+      <a href="map.html" style="text-decoration: none; color: #333; font-size: 16px; font-weight: 500;">线路图</a>
+    </li>
+  </ul>
+</nav>
 
+<!-- 注意：在导航栏下方的内容前，添加一个空的div来避免内容被导航栏遮挡，示例如下 -->
+<div style="height: 50px;"></div>
     <!-- 页面内容 -->
     <div id="page-container" class="w-full">
         <section id="section1" class="min-h-screen flex flex-col items-center justify-center relative bg-gray-50 bg-opacity-80">
