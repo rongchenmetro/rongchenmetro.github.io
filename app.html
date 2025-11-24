@@ -1,1 +1,91 @@
-。
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发中提示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* 垂直排列导航栏和正文 */
+            background: linear-gradient(45deg, #f0f9ff, #e6f7ff, #fff0f5, #fcf1f7);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            font-family: sans-serif;
+        }
+        /* 顶部导航栏样式 */
+        .top-nav {
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 0 20px;
+        }
+        .top-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* 导航项间距 */
+        }
+        .top-nav a {
+            display: block;
+            padding: 20px 0;
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .top-nav a:hover {
+            color: #1890ff; /* hover时变蓝色 */
+        }
+        /* 核心文字样式 */
+        .developing-text {
+            flex: 1; /* 占满剩余高度 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "SimSun", 宋体, serif;
+            font-size: 48px;
+            color: #333;
+            font-weight: normal;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        /* 动态渐变动画 */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* 响应式适配手机 */
+        @media (max-width: 768px) {
+            .top-nav ul {
+                gap: 20px;
+            }
+            .developing-text {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏（与其他页面统一） -->
+    <nav class="top-nav">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="map.html">线路图</a></li>
+            <li><a href="news.html">最新消息</a></li>
+            <li><a href="contact-us.html">联系我们</a></li>  
+            <li><a href="app.html">应用程序</a></li>
+        </ul>
+    </nav>
+
+    <div class="developing-text">应用程序正在开发中，请敬请期待</div>
+</body>
+</html>
