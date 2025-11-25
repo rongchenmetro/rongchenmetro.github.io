@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>容晨轨道交通-联系我们</title>
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* 顶部导航栏样式 */
+        .top-nav {
+            background-color: #333;
+            padding: 1rem 0;
+        }
+        .top-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .top-nav a:hover {
+            background-color: #555;
+        }
+        /* 中央按钮容器样式 */
+        .center-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+        }
+        /* QQ交流群按钮样式 */
+        .qq-group-btn {
+            padding: 1rem 2rem;
+            background-color: #12B7F5;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+        .qq-group-btn:hover {
+            background-color: #0BA5EC;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏（与其他页面统一） -->
+    <nav class="top-nav">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="map.html">线路图</a></li>
+            <li><a href="news.html">最新消息</a></li>
+            <li><a href="contact-us.html">联系我们</a></li>  
+            <li><a href="app.html">应用程序</a></li>
+        </ul>
+    </nav>
+
+    <!-- 中央QQ交流群按钮容器 -->
+    <div class="center-container">
+        <a href="https://qm.qq.com/q/DnpDINe0zC" target="_blank" class="qq-group-btn">QQ交流群</a>
+    </div>
+</body>
+</html>
