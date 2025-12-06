@@ -62,12 +62,21 @@
             transition: all 0.3s;
             min-width: 160px;
             text-align: center;
+            /* 取消点击后的默认高亮 */
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
         /* 按钮hover效果统一 */
         .contact-btn:hover {
             background-color: #0BA5EC;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        /* 新增按钮点击按压效果 */
+        .contact-btn:active {
+            background-color: #098FC9;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
     </style>
 </head>
