@@ -38,16 +38,19 @@
         .top-nav a:hover {
             background-color: #555;
         }
-        /* 中央按钮容器样式 */
+        /* 中央按钮容器样式 - 改为垂直排列 */
         .center-container {
             flex: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 1.5rem;
             background-color: #f5f5f5;
+            padding: 2rem;
         }
-        /* QQ交流群按钮样式 */
-        .qq-group-btn {
+        /* 通用联系按钮样式 - 统一蓝色调 */
+        .contact-btn {
             padding: 1rem 2rem;
             background-color: #12B7F5;
             color: white;
@@ -57,8 +60,11 @@
             font-weight: bold;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             transition: all 0.3s;
+            min-width: 160px;
+            text-align: center;
         }
-        .qq-group-btn:hover {
+        /* 按钮hover效果统一 */
+        .contact-btn:hover {
             background-color: #0BA5EC;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -77,9 +83,12 @@
         </ul>
     </nav>
 
-    <!-- 中央QQ交流群按钮容器 -->
+    <!-- 中央垂直排列的联系方式按钮容器 -->
     <div class="center-container">
-        <a href="https://qm.qq.com/q/DnpDINe0zC" target="_blank" class="qq-group-btn">QQ交流群</a>
+        <a href="https://qm.qq.com/q/DnpDINe0zC" target="_blank" class="contact-btn">QQ交流群</a>
+        <a href="https://v.douyin.com/alspiBTcTFs/" target="_blank" class="contact-btn">抖音主页（主）</a>
+        <a href="https://v.douyin.com/bNvHvBnghlg/" target="_blank" class="contact-btn">抖音主页（副）</a>
+        <a href="http://rongchenmetro-tousu.mysxl.cn/" target="_blank" class="contact-btn">投诉通道</a>
     </div>
 </body>
 </html>
