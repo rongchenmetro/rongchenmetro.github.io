@@ -1,1 +1,128 @@
-https://wj.qq.com/s2/24954328/1026/
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>容晨城市留言板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            min-height: 100vh;
+            position: relative;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+
+        /* 顶部导航栏 - 武汉地铁1号线标准蓝 #0079C1 */
+        .top-nav {
+            background-color: #0079C1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        /* Logo 容器：圆形边框+柔化发光效果 */
+        .logo-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #005A9E; /* 更深的蓝色边框 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(0, 90, 158, 0.6); /* 柔化发光效果 */
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        /* Logo 自适应比例，不拉伸，裁剪多余部分 */
+        .nav-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 导航选项横向排列 */
+        .nav-list {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-list a {
+            color: #fff;
+            font-size: 16px;
+            padding: 20px 0;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover {
+            color: #e0f0ff;
+        }
+
+        /* 诉求提交入口 - 屏幕正中心 */
+        #idy_floatdiv {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 40px;
+            line-height: 40px;
+            background: #26B941;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 16px;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        #idy_floatdiv a {
+            color: #FFFFFF;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* 主体内容 */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏（武汉地铁蓝+美化Logo） -->
+    <nav class="top-nav">
+        <div class="logo-wrapper">
+            <img src="http://daixiawunian.ct.ws/wp-content/uploads/2025/07/IMG_3295-1.jpeg" alt="容晨轨道交通Logo" class="nav-logo">
+        </div>
+        <ul class="nav-list">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="map.html">线路图</a></li>
+            <li><a href="news.html">最新消息</a></li>
+            <li><a href="contact-us.html">联系我们</a></li>
+            <li><a href="app.html">应用程序</a></li>
+            <li><a href="cfgd.html">容晨城市留言板</a></li>
+        </ul>
+    </nav>
+
+    <!-- 主体内容 -->
+    <div class="main-content">
+        <h1>欢迎访问容晨城市留言板</h1>
+        <p>这里是容晨轨道交通的诉求反馈平台，您可以提交建议或意见。</p>
+    </div>
+
+    <!-- 诉求提交入口（屏幕正中心） -->
+    <div id="idy_floatdiv">
+        <a href="https://wj.qq.com/s2/24954328/1026/" target="blank">城市留言板诉求件提交</a>
+    </div>
+</body>
+</html>
