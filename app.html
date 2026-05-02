@@ -39,7 +39,7 @@
         }
     </script>
 
-    <!-- 自定义样式：保留原有动态渐变背景，并融入液态玻璃元素 -->
+    <!-- 自定义样式：液态玻璃效果 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .text-shadow {
@@ -52,18 +52,7 @@
     </style>
 
     <style>
-        /* 动态渐变背景动画（保留原有设计） */
-        body {
-            background: linear-gradient(45deg, #f0f9ff, #e6f7ff, #fff0f5, #fcf1f7);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-        }
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        /* 额外：确保导航栏在渐变背景上也有良好表现 */
+        /* 确保导航栏在背景图片上也有良好表现 */
         .nav-blur-bg {
             background-color: rgba(255,255,255,0.5);
             backdrop-filter: blur(15px);
@@ -71,7 +60,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans">
+<body class="min-h-screen flex flex-col font-sans bg-custom-bg bg-fixed bg-cover bg-center">
 
 <!-- 导航栏：完全采用液态玻璃风格，与首页、联系页一致，点击顶部文字可跳转首页 -->
 <nav class="fixed top-0 left-0 w-full nav-blur-bg shadow-md z-50 border-b border-white/80 flex items-center justify-between px-5 py-3" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
@@ -108,7 +97,7 @@
             <i class="fa fa-cog text-5xl text-white/90" style="text-shadow: 0 2px 8px rgba(0,0,0,0.2);"></i>
         </div>
         <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 8px rgba(0,0,0,0.3); font-family: 'SimSun', '宋体', serif;">
-            应用程序正在开发中
+            App正在开发中
         </h2>
         <p class="text-lg md:text-xl mb-2" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 4px rgba(0,0,0,0.2);">
             希望您谅解
