@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>容晨轨道交通 - Rongchen Metro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>容晨轨道交通 - 首页</title>
     <script src="https://cdn.tailwindcss.com">
     </script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -59,6 +59,116 @@
             }
             .modal-backdrop {
                 backdrop-filter: blur(5px);
+            }
+        }
+    </style>
+    <style>
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            nav {
+                padding: 8px 10px !important;
+                flex-wrap: wrap;
+            }
+            nav > div:first-child {
+                gap: 8px !important;
+            }
+            nav img {
+                width: 32px !important;
+                height: 32px !important;
+            }
+            nav span:first-of-type {
+                font-size: 14px !important;
+            }
+            nav span:last-of-type {
+                font-size: 10px !important;
+            }
+            nav ul {
+                gap: 10px !important;
+                padding-right: 0 !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+                margin-top: 8px !important;
+            }
+            nav ul li a {
+                font-size: 12px !important;
+            }
+            #page-container section {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            #page-container h2 {
+                font-size: 1.5rem !important;
+            }
+            #page-container .text-4xl {
+                font-size: 1.5rem !important;
+            }
+            #page-container .text-xl {
+                font-size: 1rem !important;
+            }
+            #page-container .text-lg {
+                font-size: 0.9rem !important;
+            }
+            #page-container .text-sm {
+                font-size: 0.75rem !important;
+            }
+            #page-container .max-w-2xl {
+                max-width: 100% !important;
+            }
+            #page-container .p-8 {
+                padding: 16px !important;
+            }
+            #page-container .p-6 {
+                padding: 12px !important;
+            }
+            #page-container .p-4 {
+                padding: 10px !important;
+            }
+            #page-container .gap-4 {
+                gap: 8px !important;
+            }
+            #page-container .space-y-8 {
+                gap: 16px !important;
+            }
+            #page-container .w-64 {
+                width: 50% !important;
+            }
+            #page-container button {
+                padding: 6px 12px !important;
+                font-size: 0.7rem !important;
+            }
+            #page-container .mb-12 {
+                margin-bottom: 24px !important;
+            }
+            #page-container .mb-8 {
+                margin-bottom: 16px !important;
+            }
+            #page-container .py-20 {
+                padding-top: 30px !important;
+                padding-bottom: 30px !important;
+            }
+            #page-container .mt-12 {
+                margin-top: 20px !important;
+            }
+            .min-h-screen {
+                min-height: auto !important;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+        }
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 6px !important;
+            }
+            nav ul li a {
+                font-size: 11px !important;
+            }
+            #page-container h2 {
+                font-size: 1.25rem !important;
+            }
+            #page-container button {
+                padding: 4px 8px !important;
+                font-size: 0.65rem !important;
             }
         }
     </style>
@@ -193,15 +303,13 @@
                 </div>
             </div>
 
-            <!-- MOD 板块 (新增) -->
+            <!-- MOD 板块 -->
             <div class="max-w-2xl w-full mx-auto px-6 p-6 rounded-lg shadow-lg mb-8" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.7); box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
                 <h3 class="text-xl font-bold mb-6 text-center font-song" style="color: rgba(255,255,255,0.95); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
                     <i class="fa fa-puzzle-piece mr-2"></i>MOD
                 </h3>
                 
-                <!-- MOD 列表项 -->
                 <div class="space-y-4">
-                    <!-- 第一个 MOD：[RC]容晨轨道交通图片附加 -->
                     <div class="p-4 rounded-lg" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5);">
                         <h4 class="text-lg font-bold mb-3 font-fs" style="color: rgba(255,255,255,0.95); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
                             <i class="fa fa-cube mr-2"></i>[RC]容晨轨道交通图片附加
@@ -225,7 +333,6 @@
                     </div>
                 </div>
 
-                <!-- 其他MOD开发提示 -->
                 <p class="text-center mt-4 text-sm font-fs" style="color: rgba(255,255,255,0.8); text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
                     <i class="fa fa-code mr-1"></i>其他MOD正由呆下午年(Daixiawunian)开发
                 </p>
@@ -236,5 +343,7 @@
             </div>
         </section>
     </div>
+    <!-- 液态玻璃效果脚本 -->
+    <script src="xiaoguo/liquid-glass.js"></script>
 </body>
 </html>
