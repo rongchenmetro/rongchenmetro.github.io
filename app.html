@@ -30,85 +30,85 @@
                         franklin: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
                         fs: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
                         kai: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'custom-bg': "url('http://daixiawunian.ct.ws/wp-content/uploads/2025/07/VCG211489098074-1.jpg')",
                     }
                 }
             }
         }
     </script>
 
-    <!-- 自定义样式：液态玻璃效果 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .text-shadow {
                 text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            .bg-blur {
-                backdrop-filter: blur(8px);
+        }
+    </style>
+    <style>
+        /* 移动端适配 */
+        @media (max-width:768px){
+            nav{
+                flex-wrap: wrap;
+                padding:8px 10px !important;
+            }
+            nav ul{
+                width:100%;
+                justify-content: center;
+                margin-top:8px;
+                flex-wrap: wrap;
+                gap:10px !important;
             }
         }
     </style>
-
-    <style>
-        /* 确保导航栏在背景图片上也有良好表现 */
-        .nav-blur-bg {
-            background-color: rgba(255,255,255,0.5);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-        }
-    </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans bg-custom-bg bg-fixed bg-cover bg-center">
+<body class="min-h-screen flex flex-col font-sans bg-white">
 
-<!-- 导航栏：完全采用液态玻璃风格，与首页、联系页一致，点击顶部文字可跳转首页 -->
-<nav class="fixed top-0 left-0 w-full nav-blur-bg shadow-md z-50 border-b border-white/80 flex items-center justify-between px-5 py-3" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+<!-- 导航栏：纯色#00A3E9，无任何玻璃模糊效果 -->
+<nav class="fixed top-0 left-0 w-full shadow-md z-50 flex items-center justify-between px-5 py-3" style="background-color:#00A3E9;border-bottom:1px solid #0092d1;">
     <!-- 左侧Logo与标题，点击跳转首页 index.html -->
-    <a href="index.html" class="flex items-center gap-4 text-decoration-none" style="text-decoration: none;">
-        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/90 shadow-md">
-            <img src="https://cdn.phototourl.com/free/2026-04-23-fe05cf9d-4b09-4446-8f83-abde5a2f9654.png"
+    <a href="index.html" class="flex items-center gap-4" style="text-decoration: none;">
+        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
+            <img src="https://github.com/rongchenmetro/rongchenmetro.github.io/blob/ff41ab00ddf3f75d79f26a3dfa368fc284a2420c/picture/%E5%AE%B9%E6%99%A8%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9Alogo.png"
                  alt="容晨轨道交通logo"
                  class="w-full h-full object-cover">
         </div>
         <div class="flex flex-col justify-center">
-            <span class="text-white/95 text-lg font-bold leading-tight" style="text-shadow: 0 1px 3px rgba(0,0,0,0.2);">容晨轨道交通</span>
-            <span class="text-white/85 text-xs leading-tight" style="text-shadow: 0 1px 3px rgba(0,0,0,0.2);">Rongchen Metro</span>
+            <span class="text-white text-lg font-bold leading-tight">容晨轨道交通</span>
+            <span class="text-white text-xs leading-tight opacity-90">Rongchen Metro</span>
         </div>
     </a>
-    <!-- 导航菜单，与首页结构一致，留言板链接已更新 -->
-    <ul class="list-none flex items-center gap-6 md:gap-8 pr-4 m-0">
-        <li><a href="index.html" class="text-white/90 text-base font-medium no-underline" style="text-shadow: 0 1px 2px rgba(0,0,0,0.15);">首页</a></li>
-        <li><a href="map.html" class="text-white/90 text-base font-medium no-underline" style="text-shadow: 0 1px 2px rgba(0,0,0,0.15);">线路</a></li>
-        <li><a href="news.html" class="text-white/90 text-base font-medium no-underline" style="text-shadow: 0 1px 2px rgba(0,0,0,0.15);">资讯</a></li>
-        <li><a href="contact-us.html" class="text-white/90 text-base font-medium no-underline" style="text-shadow: 0 1px 2px rgba(0,0,0,0.15);">联系</a></li>
-        <li><a href="app.html" class="text-white/90 text-base font-medium no-underline" style="text-shadow: 0 1px 2px rgba(0,0,0,0.15);">App</a></li>
-        <li><a href="https://rongchenchengshiliuyanban.mysxl.cn/" target="_blank" class="text-white/90 text-base font-medium no-underline" style="text-shadow: 0 1px 2px rgba(0,0,0,0.15);">留言</a></li>
+    <!-- 导航菜单 -->
+    <ul class="list-none flex items-center gap-6 md:gap-8 pr-4 m-0 p-0">
+        <li><a href="index.html" class="text-white text-base font-medium no-underline">首页</a></li>
+        <li><a href="map.html" class="text-white text-base font-medium no-underline">线路</a></li>
+        <li><a href="news.html" class="text-white text-base font-medium no-underline">资讯</a></li>
+        <li><a href="contact-us.html" class="text-white text-base font-medium no-underline">联系</a></li>
+        <li><a href="app.html" class="text-white text-base font-medium no-underline">App</a></li>
+        <li><a href="https://rongchenchengshiliuyanban.mysxl.cn/" target="_blank" class="text-white text-base font-medium no-underline">留言</a></li>
     </ul>
 </nav>
 
 <!-- 占位高度，避免固定导航遮挡内容 -->
 <div class="h-20"></div>
 
-<!-- 主体内容：垂直居中显示开发中提示，采用毛玻璃卡片风格包裹 -->
+<!-- 主体内容：常规卡片，无玻璃模糊 -->
 <main class="flex-1 flex justify-center items-center px-4 py-10">
-    <div class="max-w-2xl w-full p-8 md:p-12 rounded-2xl shadow-2xl text-center" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.7); box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+    <div class="max-w-2xl w-full p-8 md:p-12 rounded-2xl shadow-lg text-center" style="background:#f8fafc;border:1px solid #e2e8f0;">
         <div class="mb-6">
-            <i class="fa fa-cog text-5xl text-white/90" style="text-shadow: 0 2px 8px rgba(0,0,0,0.2);"></i>
+            <i class="fa fa-cog text-5xl" style="color:#00A3E9;"></i>
         </div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 8px rgba(0,0,0,0.3); font-family: 'SimSun', '宋体', serif;">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-dark font-song">
             App正在开发中
         </h2>
-        <p class="text-lg md:text-xl mb-2" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 4px rgba(0,0,0,0.2);">
+        <p class="text-lg md:text-xl mb-2 text-slate-700">
             为您带来不便我们深表歉意
         </p>
-        <div class="w-24 h-0.5 mx-auto my-5" style="background: rgba(255,255,255,0.6);"></div>
-        <p class="text-xl md:text-2xl font-semibold tracking-wide" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 6px rgba(0,0,0,0.25); font-family: 'SimSun', '宋体', serif;">
+        <div class="w-24 h-0.5 mx-auto my-5" style="background:#00A3E9;"></div>
+        <p class="text-xl md:text-2xl font-semibold tracking-wide text-dark font-song">
             我们到时候会优先推出“容晨轨交通”App的Android和Windows版
         </p>
         <!-- 装饰小字 -->
-        <p class="mt-8 text-xs font-fs" style="color: rgba(255,255,255,0.7); text-shadow: 0 1px 2px rgba(0,0,0,0.2);">
-            <i class="fa fa-mobile mr-1"></i> 容晨轨道交通 · 智慧出行
+        <p class="mt-8 text-xs text-slate-500">
+            <i class="fa fa-mobile mr-1" style="color:#00A3E9"></i> 容晨轨道交通
         </p>
     </div>
 </main>
