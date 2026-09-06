@@ -2,15 +2,11 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>容晨轨道交通 · 资讯</title>
-    <!-- Tailwind 基础库 (保持与首页及线路页一致) -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <!-- Font Awesome 图标库 -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- 完全复用首页与联系页的配色、字体定义 -->
     <script>
         tailwind.config = {
             theme: {
@@ -30,156 +26,222 @@
                         franklin: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
                         fs: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
                         kai: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'custom-bg': "url('http://daixiawunian.ct.ws/wp-content/uploads/2025/07/VCG211489098074-1.jpg')",
                     }
                 }
             }
         }
     </script>
 
-    <!-- 自定义样式：液态玻璃效果、文本阴影等，完全参照联系页及首页风格 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .text-shadow {
                 text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            .bg-blur {
-                backdrop-filter: blur(8px);
-            }
-            /* 新闻卡片悬停效果 */
             .news-card-hover {
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
             .news-card-hover:hover {
                 transform: translateY(-4px);
-                box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+                box-shadow: 0 12px 28px rgba(0,0,0,0.12);
             }
-            /* 日期标签样式保留 */
+        }
+    </style>
+    <style>
+        /* 移动端适配（与首页保持一致） */
+        @media (max-width: 768px) {
+            nav {
+                padding: 8px 10px !important;
+                flex-wrap: wrap;
+            }
+            nav > a:first-child {
+                gap: 8px !important;
+            }
+            nav img {
+                width: 32px !important;
+                height: 32px !important;
+            }
+            nav span:first-of-type {
+                font-size: 14px !important;
+            }
+            nav span:last-of-type {
+                font-size: 10px !important;
+            }
+            nav ul {
+                gap: 10px !important;
+                padding-right: 0 !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+                margin-top: 8px !important;
+            }
+            nav ul li a {
+                font-size: 12px !important;
+            }
+            #page-container {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+            }
+            #page-container .max-w-5xl {
+                max-width: 100% !important;
+            }
+            #page-container .p-6 {
+                padding: 16px !important;
+            }
+            #page-container .p-5 {
+                padding: 12px !important;
+            }
+            #page-container .p-7 {
+                padding: 16px !important;
+            }
+            #page-container h1 {
+                font-size: 1.5rem !important;
+            }
+            #page-container h2 {
+                font-size: 1.2rem !important;
+            }
+            #page-container .text-base {
+                font-size: 0.9rem !important;
+            }
+            #page-container .text-sm {
+                font-size: 0.75rem !important;
+            }
+            #page-container .text-xs {
+                font-size: 0.7rem !important;
+            }
+            #page-container .mb-10 {
+                margin-bottom: 16px !important;
+            }
+            #page-container .space-y-6 {
+                gap: 16px !important;
+            }
+            #page-container .mt-12 {
+                margin-top: 20px !important;
+            }
+            #page-container .w-32 {
+                width: 24px !important;
+            }
             .date-badge {
-                background: rgba(255,255,255,0.25);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                border: 1px solid rgba(255,255,255,0.5);
-                color: rgba(255,255,255,0.95);
+                font-size: 0.7rem !important;
+                padding: 4px 10px !important;
+            }
+        }
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 6px !important;
+            }
+            nav ul li a {
+                font-size: 11px !important;
             }
         }
     </style>
 </head>
-<body class="min-h-screen overflow-x-hidden bg-custom-bg bg-fixed bg-cover bg-center font-sans">
+<body class="min-h-screen overflow-x-hidden bg-white font-sans">
 
-<!-- 导航栏：完全采用“联系”页的液态玻璃风格，包含Logo与站点名称，点击可跳转首页 -->
-<nav style="position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(255,255,255,0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 12px 20px; z-index: 999; border-bottom: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: space-between;">
-    <!-- 左侧Logo与标题，点击跳转首页 index.html -->
+<!-- 导航栏：纯色 #00A3E9，与首页一致 -->
+<nav style="position: fixed; top: 0; left: 0; width: 100%; background-color: #00A3E9; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 12px 20px; z-index: 999; border-bottom: 1px solid #0092d1; display: flex; align-items: center; justify-content: space-between;">
     <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
-        <div class="w-12 h-12 rounded-full overflow-hidden" style="border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <img src="https://cdn.phototourl.com/free/2026-04-23-fe05cf9d-4b09-4446-8f83-abde5a2f9654.png"
+        <div class="w-12 h-12 rounded-full overflow-hidden" style="border: 2px solid #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <img src="https://github.com/rongchenmetro/rongchenmetro.github.io/blob/ff41ab00ddf3f75d79f26a3dfa368fc284a2420c/picture/%E5%AE%B9%E6%99%A8%E8%BD%A8%E9%81%93%E4%BA%A4%E9%80%9Alogo.png"
                  alt="容晨轨道交通logo"
                  class="w-full h-full object-cover">
         </div>
         <div style="display: flex; flex-direction: column; justify-content: center;">
-            <span style="color: rgba(255,255,255,0.95); font-size: 18px; font-weight: 700; line-height: 1.3; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">容晨轨道交通</span>
-            <span style="color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 400; line-height: 1.3; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-shadow: 0 1px 3px rgba(0,0,0,0.2);">Rongchen Metro</span>
+            <span style="color: #ffffff; font-size: 18px; font-weight: 700; line-height: 1.3; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">容晨轨道交通</span>
+            <span style="color: #f0faff; font-size: 13px; font-weight: 400; line-height: 1.3; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Rongchen Metro</span>
         </div>
     </a>
-    <!-- 导航菜单，与联系页完全一致，留言板链接已更新为指定地址 -->
     <ul style="list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 25px; padding-right: 30px;">
-        <li><a href="index.html" style="text-decoration: none; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">首页</a></li>
-        <li><a href="map.html" style="text-decoration: none; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">线路</a></li>
-        <li><a href="news.html" style="text-decoration: none; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">资讯</a></li>
-        <li><a href="contact-us.html" style="text-decoration: none; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">联系</a></li>
-        <li><a href="app.html" style="text-decoration: none; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">App</a></li>
-        <li><a href="https://rongchenchengshiliuyanban.mysxl.cn/" target="_blank" style="text-decoration: none; color: rgba(255,255,255,0.9); font-size: 16px; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">留言</a></li>
+        <li><a href="index.html" style="text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 500;">首页</a></li>
+        <li><a href="map.html" style="text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 500;">线路</a></li>
+        <li><a href="news.html" style="text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 500;">资讯</a></li>
+        <li><a href="contact-us.html" style="text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 500;">联系</a></li>
+        <li><a href="app.html" style="text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 500;">App</a></li>
+        <li><a href="https://rongchenchengshiliuyanban.mysxl.cn/" target="_blank" style="text-decoration: none; color: #ffffff; font-size: 16px; font-weight: 500;">留言</a></li>
     </ul>
 </nav>
 
-<!-- 占位高度，避免固定导航遮挡内容 -->
+<!-- 占位高度 -->
 <div style="height: 80px;"></div>
 
-<!-- 页面主体容器 -->
-<div id="page-container" class="w-full px-4 md:px-8 py-6">
+<!-- 页面主体 -->
+<div id="page-container" class="w-full px-4 md:px-8 py-6 bg-white">
 
-    <!-- 页面标题区：液态玻璃卡片，与联系页按钮风格呼应 -->
-    <div class="max-w-5xl mx-auto mb-10 p-6 rounded-lg shadow-lg text-center" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.7); box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-        <h1 class="text-3xl md:text-4xl font-bold font-song" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 8px rgba(0,0,0,0.3);">
-            <i class="fa fa-newspaper-o mr-3"></i>容晨轨道交通资讯预览
+    <!-- 标题区：白色卡片，带阴影和边框 -->
+    <div class="max-w-5xl mx-auto mb-10 p-6 rounded-lg shadow-lg text-center" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+        <h1 class="text-3xl md:text-4xl font-bold font-song" style="color: #0f172a;">
+            <i class="fa fa-newspaper-o mr-3" style="color:#00A3E9;"></i>容晨轨道交通资讯预览
         </h1>
-        <div class="w-32 h-0.5 mx-auto mt-4 mb-3" style="background: rgba(255,255,255,0.7);"></div>
-        <p class="text-sm font-fs" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
-            最新更新时间：2025-11-03
-        </p>
+        <div class="w-32 h-0.5 mx-auto mt-4 mb-3" style="background: #00A3E9;"></div>
+        <p class="text-sm font-fs" style="color: #475569;">最新更新时间：2025-11-03</p>
     </div>
 
-    <!-- 新闻列表容器，使用毛玻璃卡片风格展示每条新闻 -->
+    <!-- 新闻列表 -->
     <div class="max-w-5xl mx-auto space-y-6">
 
-        <!-- 新闻1：2025-11-03 1号线开工 -->
-        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+        <!-- 新闻1 -->
+        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: #f8fafc; border: 1px solid #e2e8f0;">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="date-badge px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.95);">2025-11-03</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: #00A3E9; color: #ffffff;">2025-11-03</span>
             </div>
-            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 6px rgba(0,0,0,0.25); border-left: 4px solid rgba(255,255,255,0.8); padding-left: 16px;">容晨轨道交通1号线开工，串联协和区与御央区核心</h2>
-            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: #0f172a; border-left: 4px solid #00A3E9; padding-left: 16px;">容晨轨道交通1号线开工，串联协和区与御央区核心</h2>
+            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: #1e293b;">
                 <p>2025年11月3日，容晨轨道交通1号线在御央区银开枢纽站正式开工。该线路北起御央区“复兴街站”，南至协和区“郑楠北路站”，全长约28.5公里，设站12座，有效覆盖两大区域的核心功能区。</p>
-                <p>1号线串联容阳区人民广场、御央区复兴街等商圈，采用B型地铁列车，设计时速80公里。施工中运用先进盾构技术，确保线路高效推进，预计2029年第四季度开通，将大幅度减缓交通压力。后续将会开通2期复兴路站（不含）-锦书路站</p>
+                <p>1号线串联容阳区人民广场、御央区复兴街等商圈，采用B型地铁列车，设计时速80公里。施工中运用先进盾构技术，确保线路高效推进，预计2029年第四季度开通，将大幅度减缓交通压力。后续将会开通2期复兴路站（不含）-锦书路站。</p>
             </div>
         </div>
 
-        <!-- 新闻2：2025-04-11 各线路规划完毕 -->
-        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+        <!-- 新闻2 -->
+        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: #f8fafc; border: 1px solid #e2e8f0;">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="date-badge px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.95);">2025-04-11</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: #00A3E9; color: #ffffff;">2025-04-11</span>
             </div>
-            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 6px rgba(0,0,0,0.25); border-left: 4px solid rgba(255,255,255,0.8); padding-left: 16px;">容晨轨道交通全域线网规划敲定，线路布局紧贴六大行政区</h2>
-            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: #0f172a; border-left: 4px solid #00A3E9; padding-left: 16px;">容晨轨道交通全域线网规划敲定，线路布局紧贴六大行政区</h2>
+            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: #1e293b;">
                 <p>2025年4月11日，《容晨市轨道交通线网规划（2025-2040年）》发布，规划的8条地铁线和2条有轨电车线，均沿御央、容阳、协和、融智、容昌、杭晨六大行政区布局，总里程210公里。</p>
                 <p>地铁线路强化跨区域骨干通勤（如1号线东西向、2号线南北向），有轨电车T1线则沿杭晨、容昌实现微循环接驳，T2线延容昌、容阳、协和运营，同时预留跨界线路接口，助力区域交通一体化。</p>
             </div>
         </div>
 
-        <!-- 新闻3：2024-12-14 7条线路获批 -->
-        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+        <!-- 新闻3 -->
+        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: #f8fafc; border: 1px solid #e2e8f0;">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="date-badge px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.95);">2024-12-14</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: #00A3E9; color: #ffffff;">2024-12-14</span>
             </div>
-            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 6px rgba(0,0,0,0.25); border-left: 4px solid rgba(255,255,255,0.8); padding-left: 16px;">容晨轨道交通4-8号线及T1、T2线获批，沿容昌、杭晨等区域延伸</h2>
-            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: #0f172a; border-left: 4px solid #00A3E9; padding-left: 16px;">容晨轨道交通4-8号线及T1、T2线获批，沿容昌、杭晨等区域延伸</h2>
+            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: #1e293b;">
                 <p>2024年12月14日，轨道交通4号线（御央）、5号线（御央-融智）、6号线（融智-容昌）、7号线（杭晨-协和）、8号线（杭晨-融智）及有轨电车T1、T2线获批，线路沿容昌、杭晨等区域的延伸，总投资约850亿元。</p>
                 <p>这批线路建成后，将沿蓝色区域边界加密容昌、杭晨等新兴区域的轨道交通网络，与1-3号线形成“沿边界覆盖、跨区域联通”的线网格局，进一步完善全域交通体系。</p>
             </div>
         </div>
 
-        <!-- 新闻4：2024-02-13 首批3条线路获批 -->
-        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+        <!-- 新闻4 -->
+        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: #f8fafc; border: 1px solid #e2e8f0;">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="date-badge px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.95);">2024-02-13</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: #00A3E9; color: #ffffff;">2024-02-13</span>
             </div>
-            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 6px rgba(0,0,0,0.25); border-left: 4px solid rgba(255,255,255,0.8); padding-left: 16px;">容晨轨道交通1-3号线获批，沿核心区域构建“十字+放射”线网</h2>
-            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: #0f172a; border-left: 4px solid #00A3E9; padding-left: 16px;">容晨轨道交通1-3号线获批，沿核心区域构建“十字+放射”线网</h2>
+            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: #1e293b;">
                 <p>2024年2月13日，轨道交通1号线（协和-御央）、2号线（御央-融智）、3号线（御央-协和）获批，总长度75公里，沿御央、容阳、协和等核心区域的布局，形成“十字+放射”的核心线网框架。</p>
                 <p>1号线沿南北向串联协和与御央，2号线沿南北向衔接融智与御央，3号线沿东北-西南向联通，三条线路在容阳区人民广场形成三线换乘枢纽。</p>
             </div>
         </div>
 
-        <!-- 新闻5：2024-01-08 初步规划启动 -->
-        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+        <!-- 新闻5 -->
+        <div class="p-5 md:p-7 rounded-lg shadow-lg news-card-hover" style="background: #f8fafc; border: 1px solid #e2e8f0;">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="date-badge px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.95);">2024-01-08</span>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide" style="background: #00A3E9; color: #ffffff;">2024-01-08</span>
             </div>
-            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: rgba(255,255,255,0.95); text-shadow: 0 2px 6px rgba(0,0,0,0.25); border-left: 4px solid rgba(255,255,255,0.8); padding-left: 16px;">容晨轨道交通线路走向规划启动，沿六大行政区布局优化</h2>
-            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: rgba(255,255,255,0.9); text-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+            <h2 class="text-xl md:text-2xl font-bold mb-3 font-song" style="color: #0f172a; border-left: 4px solid #00A3E9; padding-left: 16px;">容晨轨道交通线路走向规划启动，沿六大行政区布局优化</h2>
+            <div class="text-base md:text-lg leading-relaxed space-y-3 font-fs" style="color: #1e293b;">
                 <p>2024年1月8日，容晨轨道交通线路走向初步规划启动，规划团队重点研究御央、容阳、协和、融智、容昌、杭晨六大行政区，结合客流需求优化线路走向与站点选址。</p>
                 <p>规划过程通过线上线下渠道广泛征求公众意见，确保线路沿城市的布局既契合区域发展规划，又满足市民出行需求，最终形成“沿边界覆盖、跨区域高效联通”的全域轨道交通线网蓝图。</p>
             </div>
         </div>
     </div>
 
-    <!-- 底部装饰，风格统一 -->
+    <!-- 底部装饰 -->
     <div class="mt-12 text-center max-w-2xl mx-auto px-4 pb-8">
-        <p class="text-sm font-kai" style="color: rgba(255,255,255,0.8); text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-            容晨轨道交通 · 持续更新建设动态
-        </p>
+        <p class="text-sm font-kai" style="color: #00A3E9;">容晨轨道交通 · 持续更新建设动态</p>
     </div>
 </div>
 
